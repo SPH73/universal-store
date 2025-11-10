@@ -29,6 +29,7 @@
     "@heroicons/vue": "^2.2.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@playwright/test": "^1.56.1",
+    "@sentry/nuxt": "^10.24.0",
     "@types/node": "^22.0.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitest/coverage-v8": "^4.0.8",

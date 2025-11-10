@@ -10,11 +10,17 @@ const { data, pending, error, refresh } = await useFetch("/api/perfumes", {
 });
 
 watch([q, category, brand, page], () => refresh(), { deep: true });
+
+useHead({
+  title: "🌸 Perfume Inventory",
+});
 </script>
 
 <template>
   <main class="mx-auto max-w-6xl p-6 space-y-6">
-    <h1 class="text-2xl font-semibold mb-6">Perfume Inventory</h1>
+    <h1 class="text-2xl font-semibold mb-6 text-pink-600">
+      🌸 Perfume Inventory
+    </h1>
 
     <SearchBar
       v-model:q="q"
@@ -23,7 +29,10 @@ watch([q, category, brand, page], () => refresh(), { deep: true });
       :show-brand="true"
     >
       <template #actions>
-        <button class="border rounded-lg px-3 py-2" @click="page = 1">
+        <button
+          class="border rounded-lg px-3 py-2 bg-white text-gray-900"
+          @click="page = 1"
+        >
           Search
         </button>
       </template>
@@ -32,9 +41,9 @@ watch([q, category, brand, page], () => refresh(), { deep: true });
     <LoadingState v-if="pending" message="Loading perfumes…" />
     <ErrorState v-else-if="error" />
 
-    <section v-else>
+    <section v-else class="text-gray-900">
       <EmptyState
-        v-if="!data?.items?.length"
+        v-if="!data || !('items' in data) || !data.items?.length"
         title="No perfumes found"
         message="Try adjusting your search or filter criteria."
       />
@@ -49,7 +58,7 @@ watch([q, category, brand, page], () => refresh(), { deep: true });
           :price="item.sellingPrice"
           :qty="item.qty"
           :status="item.status"
-          :img="item.photos?.[0]?.url"
+          :img="item.photos?.[0] && (item.photos[0] as any)?.url ? (item.photos[0] as any).url : undefined"
         />
       </div>
 

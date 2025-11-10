@@ -9,15 +9,24 @@ const { data, pending, error, refresh } = await useFetch("/api/components", {
 });
 
 watch([q, category, page], () => refresh(), { deep: true });
+
+useHead({
+  title: "🔧 Hydraulic Components",
+});
 </script>
 
 <template>
   <main class="mx-auto max-w-6xl p-6 space-y-6">
-    <h1 class="text-2xl font-semibold mb-6">Hydraulic Components</h1>
+    <h1 class="text-2xl font-semibold mb-6 text-blue-600">
+      🔧 Hydraulic Components
+    </h1>
 
     <SearchBar v-model:q="q" v-model:category="category" :show-brand="false">
       <template #actions>
-        <button class="border rounded-lg px-3 py-2" @click="page = 1">
+        <button
+          class="border rounded-lg px-3 py-2 bg-white text-gray-900"
+          @click="page = 1"
+        >
           Search
         </button>
       </template>
@@ -26,9 +35,9 @@ watch([q, category, page], () => refresh(), { deep: true });
     <LoadingState v-if="pending" message="Loading inventory…" />
     <ErrorState v-else-if="error" />
 
-    <section v-else>
+    <section v-else class="text-gray-900">
       <EmptyState
-        v-if="!data?.items?.length"
+        v-if="!data || !('items' in data) || !data.items?.length"
         title="No items found"
         message="Try adjusting your search or filter criteria."
       />

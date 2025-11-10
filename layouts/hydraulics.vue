@@ -23,6 +23,6 @@
 
 <script setup lang="ts">
 useHead({
-  bodyAttrs: { style: ":root{--bg:#0b1220;--fg:#e6f0ff;--nav-bg:#0f172a}" },
+  bodyAttrs: { style: ":root{--bg:#f1f5f9;--fg:#1e293b;--nav-bg:#dbeafe}" },
 });
 </script>

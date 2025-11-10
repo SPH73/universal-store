@@ -9,11 +9,15 @@ const { data, pending, error, refresh } = await useFetch("/api/bargains", {
   query: { q, category, badge, page },
 });
 watch([q, category, badge, page], () => refresh(), { deep: true });
+
+useHead({
+  title: "🏷️ Bargain Box",
+});
 </script>
 
 <template>
   <main class="mx-auto max-w-6xl p-6 space-y-6">
-    <h1 class="text-2xl font-semibold mb-6">Bargain Box</h1>
+    <h1 class="text-2xl font-semibold mb-6 text-green-600">🏷️ Bargain Box</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
       <div class="relative">
@@ -31,15 +35,18 @@ watch([q, category, badge, page], () => refresh(), { deep: true });
       <input
         v-model="category"
         placeholder="Category"
-        class="border rounded-lg px-3 py-2"
+        class="border rounded-lg px-3 py-2 bg-white text-gray-900"
       />
       <input
         v-model="badge"
         placeholder="Badge (e.g., Last Units)"
-        class="border rounded-lg px-3 py-2"
+        class="border rounded-lg px-3 py-2 bg-white text-gray-900"
       />
       <div class="flex items-center justify-end">
-        <button class="border rounded-lg px-3 py-2" @click="page = 1">
+        <button
+          class="border rounded-lg px-3 py-2 bg-white text-gray-900"
+          @click="page = 1"
+        >
           Search
         </button>
       </div>
@@ -48,9 +55,9 @@ watch([q, category, badge, page], () => refresh(), { deep: true });
     <LoadingState v-if="pending" message="Loading bargains…" />
     <ErrorState v-else-if="error" />
 
-    <section v-else>
+    <section v-else class="text-gray-900">
       <EmptyState
-        v-if="!data?.items?.length"
+        v-if="!data || !('items' in data) || !data.items?.length"
         title="No bargains found"
         message="Check back soon for new deals and clearance items."
       />
@@ -58,8 +65,8 @@ watch([q, category, badge, page], () => refresh(), { deep: true });
         <li v-for="item in data.items" :key="item.id">
           <article class="border rounded-2xl p-4 flex gap-4 bg-white">
             <img
-              v-if="item.photos?.[0]?.url"
-              :src="item.photos[0].url"
+              v-if="item.photos?.[0] && (item.photos[0] as any)?.url"
+              :src="(item.photos[0] as any).url"
               alt=""
               class="w-24 h-24 object-cover rounded-lg"
             />
@@ -88,10 +95,10 @@ watch([q, category, badge, page], () => refresh(), { deep: true });
               </div>
               <p
                 class="text-sm text-gray-600 inline-flex items-center gap-1"
-                v-if="item.badges?.length"
+                v-if="item.badges && Array.isArray(item.badges) && (item.badges as any[]).length"
               >
                 <Icon name="bundle" :size="16" class="text-gray-500" />
-                Badges: {{ item.badges.join(", ") }}
+                Badges: {{ (item.badges as any[]).join(", ") }}
               </p>
               <p
                 class="text-xs text-gray-500 inline-flex items-center gap-1"

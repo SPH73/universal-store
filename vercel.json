@@ -6,14 +6,14 @@
   "framework": "nuxtjs",
   "outputDirectory": ".output",
   "env": {
-    "NUXT_BASEROW_BASE_URL": "@baserow_base_url",
-    "NUXT_BASEROW_TOKEN_HYDRAULIC": "@baserow_token_hydraulic",
-    "NUXT_BASEROW_TABLE_ID_HYDRAULIC": "@baserow_table_id_hydraulic",
-    "NUXT_BASEROW_TOKEN_PERF": "@baserow_token_perf",
-    "NUXT_BASEROW_TABLE_ID_PERF": "@baserow_table_id_perf",
-    "NUXT_BASEROW_TOKEN_BARGAIN": "@baserow_token_bargain",
-    "NUXT_BASEROW_TABLE_ID_BARGAIN": "@baserow_table_id_bargain",
-    "NUXT_ADMIN_PASSWORD": "@admin_password"
+    "NUXT_BASEROW_BASE_URL": "NUXT_BASEROW_BASE_URL",
+    "NUXT_BASEROW_TOKEN_HYDRAULIC": "NUXT_BASEROW_TOKEN_HYDRAULIC",
+    "NUXT_BASEROW_TABLE_ID_HYDRAULIC": "NUXT_BASEROW_TABLE_ID_HYDRAULIC",
+    "NUXT_BASEROW_TOKEN_PERF": "NUXT_BASEROW_TOKEN_PERF",
+    "NUXT_BASEROW_TABLE_ID_PERF": "NUXT_BASEROW_TABLE_ID_PERF",
+    "NUXT_BASEROW_TOKEN_BARGAIN": "NUXT_BASEROW_TOKEN_BARGAIN",
+    "NUXT_BASEROW_TABLE_ID_BARGAIN": "NUXT_BASEROW_TABLE_ID_BARGAIN",
+    "NUXT_ADMIN_PASSWORD": "NUXT_ADMIN_PASSWORD"
   },
   "functions": {
     "server/api/**/*.ts": {

@@ -117,3 +117,4 @@ playwright/.cache/
 # Development files
 *.todo.md
 REVIEW.md
+.vercel

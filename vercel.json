@@ -1,0 +1,22 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nuxt",
+  "outputDirectory": ".output/public",
+  "env": {
+    "NUXT_BASEROW_BASE_URL": "@baserow_base_url",
+    "NUXT_BASEROW_TOKEN_HYDRAULIC": "@baserow_token_hydraulic",
+    "NUXT_BASEROW_TABLE_ID_HYDRAULIC": "@baserow_table_id_hydraulic",
+    "NUXT_BASEROW_TOKEN_PERF": "@baserow_token_perf",
+    "NUXT_BASEROW_TABLE_ID_PERF": "@baserow_table_id_perf",
+    "NUXT_BASEROW_TOKEN_BARGAIN": "@baserow_token_bargain",
+    "NUXT_BASEROW_TABLE_ID_BARGAIN": "@baserow_table_id_bargain",
+    "NUXT_ADMIN_PASSWORD": "@admin_password"
+  },
+  "functions": {
+    "app/server/api/**": {
+      "maxDuration": 30
+    }
+  }
+}

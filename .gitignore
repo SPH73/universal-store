@@ -113,3 +113,7 @@ playwright/.cache/
 
 # Nuxt DevTools
 .nuxt-devtools
+
+# Development files
+*.todo.md
+REVIEW.md

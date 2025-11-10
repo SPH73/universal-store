@@ -1,0 +1,11 @@
+version: "3"
+services:
+  baserow:
+    image: baserow/baserow:latest
+    ports:
+      - "80:80"
+    environment:
+      BASEROW_PUBLIC_URL: "http://localhost"
+    volumes:
+      - /mnt/external/baserow_data:/baserow/data
+    restart: unless-stopped

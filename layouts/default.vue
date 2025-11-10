@@ -17,8 +17,8 @@
         </NuxtLink>
       </nav>
     </header>
-    <main class="mx-auto max-w-6xl px-4 py-6">
+    <div class="mx-auto max-w-6xl px-4 py-6">
       <slot />
-    </main>
+    </div>
   </div>
 </template>

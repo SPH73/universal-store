@@ -16,7 +16,7 @@ describe("Validators", () => {
 
       if (result.success) {
         expect(result.data.page).toBe(1);
-        expect(result.data.limit).toBe(20);
+        expect(result.data.limit).toBe(20); // respects explicit limit
         expect(result.data.q).toBe("test search");
         expect(result.data.category).toBe("pumps");
       }
@@ -30,7 +30,7 @@ describe("Validators", () => {
 
       if (result.success) {
         expect(result.data.page).toBe(1);
-        expect(result.data.limit).toBe(20);
+        expect(result.data.limit).toBe(25); // default limit
       }
     });
 

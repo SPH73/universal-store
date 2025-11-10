@@ -1,8 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
+
+// Stub Nuxt auto-imports so Vitest can parse app.vue
+vi.mock("#imports", () => ({ useHead: () => void 0 }));
+
 import { mount } from "@vue/test-utils";
 import { createRouter, createWebHistory } from "vue-router";
 
-// Mock Nuxt composables
+// Optional Nuxt runtime stubs (safe)
 vi.mock("#app", () => ({
   useHead: vi.fn(),
   useRouter: () => ({
@@ -19,16 +23,9 @@ vi.mock("#app", () => ({
   navigateTo: vi.fn(),
 }));
 
-// Mock components
-const MockNuxtLayout = {
-  template: '<div class="mock-layout"><slot /></div>',
-};
+const MockNuxtLayout = { template: '<div class="mock-layout"><slot /></div>' };
+const MockNuxtPage = { template: '<div class="mock-page">Page Content</div>' };
 
-const MockNuxtPage = {
-  template: '<div class="mock-page">Page Content</div>',
-};
-
-// Import the component to test
 import AppVue from "../../app.vue";
 
 describe("App.vue", () => {
@@ -41,10 +38,7 @@ describe("App.vue", () => {
     const wrapper = mount(AppVue, {
       global: {
         plugins: [router],
-        components: {
-          NuxtLayout: MockNuxtLayout,
-          NuxtPage: MockNuxtPage,
-        },
+        components: { NuxtLayout: MockNuxtLayout, NuxtPage: MockNuxtPage },
       },
     });
 
@@ -61,15 +55,11 @@ describe("App.vue", () => {
     const wrapper = mount(AppVue, {
       global: {
         plugins: [router],
-        components: {
-          NuxtLayout: MockNuxtLayout,
-          NuxtPage: MockNuxtPage,
-        },
+        components: { NuxtLayout: MockNuxtLayout, NuxtPage: MockNuxtPage },
       },
     });
 
-    expect(wrapper.findComponent({ name: "NuxtLayout" }).exists()).toBe(false); // Because it's mocked
-    expect(wrapper.find(".mock-layout").exists()).toBe(true);
-    expect(wrapper.find(".mock-page").exists()).toBe(true);
+    expect(wrapper.findAll(".mock-layout").length).toBe(1);
+    expect(wrapper.findAll(".mock-page").length).toBe(1);
   });
 });

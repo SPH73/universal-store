@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const baseUrl = getServerURL(event);
+  const baseUrl = getRequestURL(event);
 
   const staticPages = ["/", "/inventory"];
 

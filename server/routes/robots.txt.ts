@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
     "Disallow: /admin/",
     "Disallow: /api/",
     "",
-    `Sitemap: ${getServerURL(event)}/sitemap.xml`,
+    `Sitemap: ${getRequestURL(event)}/sitemap.xml`,
   ].join("\n");
 
   setHeader(event, "Content-Type", "text/plain");
